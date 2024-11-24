@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StanIustinaLab7.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout 
+            Padding="30,0"
+            Spacing="25">
+            
+            <Image
+                Source="care_bear.png"
+                HeightRequest="300"
+                Aspect="AspectFit"
+                SemanticProperties.Description="Personal Image" />
+
+            <Label
+                Text="Salut! Sunt Stan Iustina. Aceasta este aplicatia mea personala."
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+         
+
+            <Button
+                Text="Descoperă mai multe"
+                Clicked="OnDiscoverMoreClicked"
+                HorizontalOptions="Center"
+                VerticalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
