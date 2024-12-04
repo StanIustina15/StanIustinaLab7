@@ -80,6 +80,15 @@ namespace StanIustinaLab7.Data
             + " on P.ID = LP.ProductID where LP.ShopListID = ?",
             shoplistid);
         }
+        public Task<int> DeleteListProductAsync(ListProduct listProduct)
+        {
+            return _database.DeleteAsync(listProduct);
+        }
+
+        internal async Task DeleteListProductAsync(Product listProduct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
     

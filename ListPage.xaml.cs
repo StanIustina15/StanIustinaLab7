@@ -1,4 +1,4 @@
-using StanIustinaLab7.Models;
+﻿using StanIustinaLab7.Models;
 namespace StanIustinaLab7;
 
 
@@ -37,5 +37,31 @@ public partial class ListPage : ContentPage
 
         listView.ItemsSource = await App.Database.GetListProductsAsync(shopl.ID);
     }
+    async void OnDeleteItemButtonClicked(object sender, EventArgs e)
+    {
+        var selectedItem = listView.SelectedItem as Product;
+        if (selectedItem != null) // Verificăm dacă există un element selectat
+        {
+            var shopList = (ShopList)this.BindingContext;
 
-}
+            // Găsim legătura dintre produs și lista curentă
+            var listProduct = (await App.Database.GetListProductsAsync(shopList.ID))
+                .FirstOrDefault(p => p.ID == selectedItem.ID);
+
+            if (listProduct != null)
+            {
+                await App.Database.DeleteListProductAsync(listProduct);
+                listView.ItemsSource = await App.Database.GetListProductsAsync(shopList.ID); // Reîmprospătăm lista
+            }
+            else
+            {
+                await DisplayAlert("Error", "Item not found in the list.", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Error", "No item selected for deletion.", "OK");
+        }
+        }
+    }
+
